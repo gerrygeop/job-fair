@@ -1,7 +1,7 @@
 <x-app-layout>
-    <x-card>
+    <x-board>
         <div class="p-6 text-gray-900">
             {{ __("You're logged in!") }}
         </div>
-    </x-card>
+    </x-board>
 </x-app-layout>
