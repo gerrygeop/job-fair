@@ -11,17 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('perusahaan', function (Blueprint $table) {
+        Schema::create('lowongan', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->string('nama_perusahaan');
-            $table->text('alamat');
+            $table->foreignId('perusahaan_id')->constrained('perusahaan')->cascadeOnDelete();
+            $table->string('judul');
             $table->string('lokasi');
-            $table->string('telpon');
-            $table->string('email');
             $table->text('deskripsi')->nullable();
-            $table->string('logo_path')->nullable();
-            $table->string('file_path')->nullable();
+            $table->dateTime('deadline');
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('perusahaan');
+        Schema::dropIfExists('lowongan');
     }
 };

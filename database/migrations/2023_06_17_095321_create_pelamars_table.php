@@ -22,10 +22,9 @@ return new class extends Migration
             $table->string('telpon');
             $table->string('email');
             $table->string('status_kawin');
-            $table->string('pendidikan_terakhir');
-            $table->string('photo_path');
-            $table->string('resume_path');
-            $table->boolean('agree_terms_conditions');
+            $table->string('pendidikan_terakhir')->nullable();
+            $table->string('photo_path')->nullable();
+            $table->string('resume_path')->nullable();
             $table->timestamps();
         });
     }
