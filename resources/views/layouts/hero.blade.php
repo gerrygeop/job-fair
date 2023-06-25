@@ -5,7 +5,7 @@
 
             <nav x-data="{ open: false }" class="bg-white border-b border-gray-200 shadow-sm">
                 <!-- Primary Navigation Menu -->
-                <div class="max-w-7xl mx-auto px-4">
+                <div class="mx-auto px-4 lg:px-6">
                     <div class="flex justify-between h-20">
                         <div class="flex">
                             <!-- Logo -->
@@ -16,11 +16,11 @@
                             </div>
 
                             <div class="hidden space-x-8 md:-my-px md:ml-10 md:flex">
-                                <x-nav-link href="#">
+                                <x-nav-link href="{{ route('lowongan-kerja') }}">
                                     {{ __('Lowongan Kerja') }}
                                 </x-nav-link>
 
-                                <x-nav-link href="#">
+                                <x-nav-link href="{{ route('perusahaan') }}">
                                     {{ __('Perusahaan') }}
                                 </x-nav-link>
 

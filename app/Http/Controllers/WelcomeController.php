@@ -12,7 +12,7 @@ class WellcomeController extends Controller
     {
         return view('welcome', [
             'lowongan' => Lowongan::with('perusahaan')->limit(6)->get(),
-            'perusahaan' => Perusahaan::with('industri')->withCount('lowongan')->get(),
+            'perusahaan' => Perusahaan::with('industri')->limit(6)->withCount('lowongan')->get(),
         ]);
     }
 
@@ -20,6 +20,13 @@ class WellcomeController extends Controller
     {
         return view('lowongan', [
             'lowongan' => Lowongan::with('perusahaan')->get(),
+        ]);
+    }
+
+    public function perusahaan()
+    {
+        return view('perusahaan', [
+            'perusahaan' => Perusahaan::with('industri')->withCount('lowongan')->get(),
         ]);
     }
 }

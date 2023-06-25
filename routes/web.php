@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\WellcomeController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,8 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [WellcomeController::class, 'wellcome'])->name('homepage');
-Route::get('/lowongan', [WellcomeController::class, 'lowongan'])->name('lowongan-kerja');
+Route::get('/', [WelcomeController::class, 'wellcome'])->name('homepage');
+Route::get('/lowongan', [WelcomeController::class, 'lowongan'])->name('lowongan-kerja');
+Route::get('/perusahaan', [WelcomeController::class, 'perusahaan'])->name('perusahaan');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
