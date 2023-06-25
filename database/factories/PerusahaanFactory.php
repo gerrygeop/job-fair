@@ -19,6 +19,7 @@ class PerusahaanFactory extends Factory
         return [
             'nama_perusahaan' => fake()->company(),
             'alamat' => fake()->address(),
+            'lokasi' => fake()->city(),
             'telpon' => fake()->phoneNumber(),
             'email' => fake()->companyEmail(),
             'deskripsi' => fake()->text(),
