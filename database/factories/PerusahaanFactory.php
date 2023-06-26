@@ -21,9 +21,9 @@ class PerusahaanFactory extends Factory
             'alamat' => fake()->address(),
             'lokasi' => fake()->city(),
             'telpon' => fake()->phoneNumber(),
-            'email' => fake()->companyEmail(),
+            'url_website' => fake()->domainName(),
             'deskripsi' => fake()->text(),
-            'logo_path' => basename(fake()->image(storage_path('app/public'))),
+            'logo_path' => basename(fake()->image(storage_path('app/public/perusahaan/logo'))),
         ];
     }
 }

@@ -18,10 +18,11 @@ return new class extends Migration
             $table->text('alamat');
             $table->string('lokasi');
             $table->string('telpon');
-            $table->string('email');
+            $table->string('url_website')->nullable();
             $table->text('deskripsi')->nullable();
             $table->string('logo_path')->nullable();
             $table->string('file_path')->nullable();
+            $table->boolean('agree_to_terms')->default(true);
             $table->timestamps();
         });
     }

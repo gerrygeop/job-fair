@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $industri = Industri::factory(10)->create();
 
         User::factory()->create([
+            'email' => fake()->safeEmail(),
             'role' => \App\Enums\UserRole::ADMIN
         ]);
 
