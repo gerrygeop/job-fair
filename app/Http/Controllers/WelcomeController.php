@@ -6,9 +6,9 @@ use App\Models\Lowongan;
 use App\Models\Perusahaan;
 use Illuminate\Http\Request;
 
-class WellcomeController extends Controller
+class WelcomeController extends Controller
 {
-    public function wellcome()
+    public function welcome()
     {
         return view('welcome', [
             'lowongan' => Lowongan::with('perusahaan')->limit(6)->get(),
