@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [WelcomeController::class, 'wellcome'])->name('homepage');
+Route::get('/', [WelcomeController::class, 'welcome'])->name('homepage');
 Route::get('/lowongan', [WelcomeController::class, 'lowongan'])->name('lowongan-kerja');
 Route::get('/perusahaan', [WelcomeController::class, 'perusahaan'])->name('perusahaan');
 
