@@ -1,4 +1,4 @@
-<x-hero-layout>
+<x-welcome-layout>
     <section class="bg-[url('/public/image/jigsaw.svg')] bg-blue-800">
         <div class="max-w-7xl mx-auto px-5 py-14">
             <div class="flex flex-col text-center w-full mb-10">
@@ -72,4 +72,4 @@
             </div>
         </div>
     </section>
-</x-hero-layout>
+</x-welcome-layout>
