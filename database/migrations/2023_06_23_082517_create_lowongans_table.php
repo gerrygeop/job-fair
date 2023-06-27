@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('perusahaan_id')->constrained('perusahaan')->cascadeOnDelete();
             $table->string('judul');
-            $table->string('lokasi');
+            $table->string('kota');
             $table->text('deskripsi')->nullable();
             $table->dateTime('deadline');
             $table->boolean('is_active')->default(true);

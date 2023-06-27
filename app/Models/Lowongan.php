@@ -18,7 +18,7 @@ class Lowongan extends Model
         return $this->belongsTo(Perusahaan::class);
     }
 
-    public function categories(): BelongsTo
+    public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
