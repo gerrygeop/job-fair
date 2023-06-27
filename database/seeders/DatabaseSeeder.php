@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Category;
 use App\Models\Industri;
 use App\Models\Lowongan;
 use App\Models\Perusahaan;
@@ -17,14 +18,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $industri = Industri::factory(10)->create();
+        $this->call([
+            CategorySeeder::class,
+        ]);
 
         User::factory()->create([
             'email' => fake()->safeEmail(),
             'role' => \App\Enums\UserRole::ADMIN
         ]);
 
-        User::factory(10)->create()->each(function ($user) use ($industri) {
+        $industri = Industri::all();
+        $categories = Category::all();
+
+        User::factory(10)->create()->each(function ($user) use ($industri, $categories) {
             $perusahaan = Perusahaan::factory()->create([
                 'user_id' => $user->id,
             ]);
@@ -32,7 +38,8 @@ class DatabaseSeeder extends Seeder
             $perusahaan->industri()->attach($industri->random());
 
             Lowongan::factory(rand(1, 3))->create([
-                'perusahaan_id' => $perusahaan->id
+                'perusahaan_id' => $perusahaan->id,
+                'category_id' => $categories->random(),
             ]);
         });
     }
