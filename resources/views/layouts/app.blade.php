@@ -8,7 +8,7 @@
             <div class="md:ml-64 w-full">
                 @include('layouts.navigation')
 
-                <main class="p-4 sm:p-6 lg:p-10">
+                <main class="p-4 sm:p-6 lg:p-12">
                     {{ $slot }}
                 </main>
             </div>
