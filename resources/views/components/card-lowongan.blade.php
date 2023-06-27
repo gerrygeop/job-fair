@@ -3,7 +3,7 @@
 <div class="p-2 lg:w-1/3 md:w-1/2 w-full">
     <div class="h-full border-gray-200 border p-4 rounded-lg">
         <div class="flex items-start mb-3">
-            <img alt="team" class="w-14 h-14 bg-gray-100 object-cover object-center flex-shrink-0 rounded mr-4" src="{{ asset('storage/'.$lowongan->perusahaan->logo_path) }}">
+            <img alt="team" class="w-14 h-14 bg-gray-100 object-cover object-center flex-shrink-0 rounded mr-4" src="{{ asset('storage/perusahaan/logo/'.$lowongan->perusahaan->logo_path) }}">
             <div class="flex-grow">
                 <h2 class="text-gray-900 text-lg font-semibold">{{ $lowongan->judul }}</h2>
                 <p class="text-indigo-600 font-medium">{{ $lowongan->perusahaan->nama_perusahaan }}</p>
