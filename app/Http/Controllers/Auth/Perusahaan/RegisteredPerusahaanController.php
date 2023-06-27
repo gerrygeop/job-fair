@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth\Perusahaan;
 
 use App\Http\Controllers\Controller;
-use App\Models\Perusahaan;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
