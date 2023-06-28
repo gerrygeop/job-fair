@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->prefix('admin/')->name('d.')->group(function () {
     Route::resource('perusahaan', PerusahaanController::class);
+    Route::delete('perusahaan/{perusahaan}', [PerusahaanController::class, 'deleteFile'])->name('perusahaan.delete-file');
+    Route::get('perusahaan/{perusahaan}/lampiran', [PerusahaanController::class, 'download'])->name('perusahaan.download');
 
     Route::resource('lowongan', LowonganController::class);
 
