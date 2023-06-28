@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Industri extends Model
 {
@@ -13,8 +13,8 @@ class Industri extends Model
     protected $guarded = ['id'];
     protected $table = 'industri';
 
-    public function perusahaan(): BelongsToMany
+    public function perusahaan(): HasMany
     {
-        return $this->belongsToMany(Perusahaan::class);
+        return $this->hasMany(Perusahaan::class);
     }
 }

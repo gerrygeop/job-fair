@@ -16,14 +16,6 @@ return new class extends Migration
             $table->string('name');
             $table->timestamps();
         });
-
-        Schema::table('lowongan', function (Blueprint $table) {
-            $table->foreignId('category_id')
-                ->nullable()
-                ->after('perusahaan_id')
-                ->constrained('categories')
-                ->nullOnDelete();
-        });
     }
 
     /**

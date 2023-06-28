@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('perusahaan', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->unsignedBigInteger('industri_id')->cascadeOnDelete();
             $table->string('nama_perusahaan');
             $table->text('alamat');
             $table->string('lokasi');

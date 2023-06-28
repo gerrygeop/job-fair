@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('industri', function (Blueprint $table) {
+        Schema::create('clicks', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->unsignedBigInteger('lowongan_id');
+            $table->text('user_agent')->nullable();
+            $table->string('ip')->nullable();
             $table->timestamps();
         });
     }
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('industri');
+        Schema::dropIfExists('clicks');
     }
 };

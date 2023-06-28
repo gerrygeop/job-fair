@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Perusahaan extends Model
@@ -20,9 +19,9 @@ class Perusahaan extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function industri(): BelongsToMany
+    public function industri(): BelongsTo
     {
-        return $this->belongsToMany(Industri::class);
+        return $this->belongsTo(Industri::class);
     }
 
     public function lowongan(): HasMany

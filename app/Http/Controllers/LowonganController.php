@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LowonganRequest;
+use App\Models\Category;
 use App\Models\Lowongan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LowonganController extends Controller
 {
@@ -20,15 +23,25 @@ class LowonganController extends Controller
      */
     public function create()
     {
-        //
+        return view('lowongan.create', [
+            'categories' => Category::all()
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(LowonganRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        DB::transaction(function () use ($validated) {
+            $validated['perusahaan_id'] = auth()->user()->perusahaan->id;
+
+            Lowongan::create($validated);
+        });
+
+        return to_route('dashboard');
     }
 
     /**
@@ -44,15 +57,24 @@ class LowonganController extends Controller
      */
     public function edit(Lowongan $lowongan)
     {
-        //
+        return view('lowongan.edit', [
+            'loker' => $lowongan->load('category'),
+            'categories' => Category::all(),
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Lowongan $lowongan)
+    public function update(LowonganRequest $request, Lowongan $lowongan)
     {
-        //
+        $validated = $request->validated();
+
+        DB::transaction(function () use ($validated, $lowongan) {
+            $lowongan->update($validated);
+        });
+
+        return to_route('dashboard');
     }
 
     /**
@@ -60,6 +82,10 @@ class LowonganController extends Controller
      */
     public function destroy(Lowongan $lowongan)
     {
-        //
+        DB::transaction(function () use ($lowongan) {
+            $lowongan->delete();
+        });
+
+        return back();
     }
 }

@@ -33,9 +33,8 @@ class DatabaseSeeder extends Seeder
         User::factory(10)->create()->each(function ($user) use ($industri, $categories) {
             $perusahaan = Perusahaan::factory()->create([
                 'user_id' => $user->id,
+                'industri_id' => $industri->random(),
             ]);
-
-            $perusahaan->industri()->attach($industri->random());
 
             Lowongan::factory(rand(1, 3))->create([
                 'perusahaan_id' => $perusahaan->id,
