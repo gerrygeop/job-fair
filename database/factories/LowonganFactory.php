@@ -20,9 +20,8 @@ class LowonganFactory extends Factory
 
         return [
             'judul' => fake()->jobTitle(),
-            'kota' => fake()->city(),
+            'lokasi' => fake()->city(),
             'deskripsi' => fake()->paragraph(),
-            'deadline' => fake()->dateTimeBetween('now', '+2 month'),
         ];
     }
 }

@@ -57,9 +57,9 @@
                         <x-input-error :messages="$errors->get('alamat')" class="mt-2" />
                     </div>
 
-                    <!-- Kota Perusahaan -->
+                    <!-- Lokasi Perusahaan -->
                     <div class="mt-4">
-                        <x-input-label for="lokasi" :value="__('Kota')" />
+                        <x-input-label for="lokasi" :value="__('Lokasi')" />
                         <x-text-input id="lokasi" class="block mt-1 w-full" type="text" name="lokasi" :value="old('lokasi')" required autocomplete="lokasi" placeholder="Samarinda" />
                         <x-input-error :messages="$errors->get('lokasi')" class="mt-2" />
                     </div>

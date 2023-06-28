@@ -23,9 +23,8 @@ class LowonganRequest extends FormRequest
     {
         return [
             'judul' => ['required', 'string', 'max:255'],
-            'kota' => ['required', 'string', 'max:255'],
+            'lokasi' => ['required', 'string', 'max:255'],
             'deskripsi' => ['nullable', 'string'],
-            'deadline' => ['required', 'date'],
             'category_id' => ['required', 'exists:categories,id'],
         ];
     }

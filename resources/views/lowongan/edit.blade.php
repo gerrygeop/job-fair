@@ -26,9 +26,9 @@
                 </div>
 
                 <div class="mt-4">
-                    <x-input-label for="kota" :value="__('Kota')" />
-                    <x-text-input id="kota" class="block mt-1 w-full" type="text" name="kota" :value="old('kota', $loker->kota)" required autocomplete="kota" placeholder="Jakarta" />
-                    <x-input-error :messages="$errors->get('kota')" class="mt-2" />
+                    <x-input-label for="lokasi" :value="__('Lokasi')" />
+                    <x-text-input id="lokasi" class="block mt-1 w-full" type="text" name="lokasi" :value="old('lokasi', $loker->lokasi)" required autocomplete="lokasi" placeholder="Jakarta" />
+                    <x-input-error :messages="$errors->get('lokasi')" class="mt-2" />
                 </div>
 
                 <div class="mt-4">
