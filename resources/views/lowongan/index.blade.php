@@ -27,7 +27,7 @@
             @forelse (auth()->user()->perusahaan->lowongan->sortByDesc('created_at') as $loker)
                 <tr>
                     <x-td>
-                        <a href="{{ route('d.lowongan.edit', $loker) }}" class="font-medium text-gray-900 hover:underline">
+                        <a href="{{ route('d.lowongan.show', $loker) }}" class="font-medium text-gray-900 hover:underline">
                             {{ $loker->judul }}
                         </a>
                     </x-td>
@@ -35,17 +35,15 @@
                     <x-td>
                         <x-badge :isActive="$loker->is_active">{{ $loker->is_active ? 'Aktif' : 'Tidak aktif' }}</x-badge>
                     </x-td>
-                    <x-td>
-                        <div class="flex items-center justify-center gap-x-6">
-                            <form action="{{ route('d.lowongan.destroy', $loker) }}" method="POST" class="flex items-center">
-                                @csrf
-                                @method('DELETE')
-                                <x-trash-button />
-                            </form>
+                    <x-td class="flex items-center justify-center gap-x-6">
+                        <form action="{{ route('d.lowongan.destroy', $loker) }}" method="POST" class="flex items-center">
+                            @csrf
+                            @method('DELETE')
+                            <x-trash-button />
+                        </form>
 
-                            <x-edit-button href="{{ route('d.lowongan.edit', $loker) }}" />
-                            <x-eye-button href="{{ route('d.lowongan.show', $loker) }}" />
-                        </div>
+                        <x-edit-button href="{{ route('d.lowongan.edit', $loker) }}" />
+                        <x-eye-button href="{{ route('d.lowongan.show', $loker) }}" />
                     </x-td>
                 </tr>
 

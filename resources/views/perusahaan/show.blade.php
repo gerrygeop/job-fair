@@ -52,13 +52,15 @@
                     </div>
                 </div>
 
-                <div class="mt-4 md:mt-0">
-                    <a href="{{ route('d.perusahaan.edit', $perusahaan) }}" class="w-full">
-                        <x-secondary-button class="w-full md:w-auto">
-                            Edit
-                        </x-secondary-button>
-                    </a>
-                </div>
+                @can('perusahaan')
+                    <div class="mt-4 md:mt-0">
+                        <a href="{{ route('d.perusahaan.edit', $perusahaan) }}" class="w-full">
+                            <x-secondary-button class="w-full md:w-auto">
+                                Edit
+                            </x-secondary-button>
+                        </a>
+                    </div>
+                @endcan
             </div>
 
             <div class="mt-4 border-t border-gray-100">
