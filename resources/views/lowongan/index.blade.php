@@ -16,8 +16,8 @@
         <thead class="bg-gray-50">
             <tr>
                 <x-th>Nama</x-th>
-                <x-th>Tanggal dibuat</x-th>
-                <x-th>Terakhir diperbarui</x-th>
+                <x-th>Lokasi</x-th>
+                <x-th>Status</x-th>
                 <th scope="col" class="relative px-4 py-2.5">
                     <span class="sr-only">Edit</span>
                 </th>
@@ -31,17 +31,20 @@
                             {{ $loker->judul }}
                         </a>
                     </x-td>
-                    <x-td>{{ $loker->created_at->isoFormat('D MMMM Y') }}</x-td>
-                    <x-td>{{ $loker->updated_at->diffForHumans() }}</x-td>
+                    <x-td>{{ $loker->lokasi }}</x-td>
+                    <x-td>
+                        <x-badge :isActive="$loker->is_active">{{ $loker->is_active ? 'Aktif' : 'Tidak aktif' }}</x-badge>
+                    </x-td>
                     <x-td>
                         <div class="flex items-center justify-center gap-x-6">
-                            <form action="{{ route('d.lowongan.destroy', $loker) }}" method="POST">
+                            <form action="{{ route('d.lowongan.destroy', $loker) }}" method="POST" class="flex items-center">
                                 @csrf
                                 @method('DELETE')
                                 <x-trash-button />
                             </form>
 
                             <x-edit-button href="{{ route('d.lowongan.edit', $loker) }}" />
+                            <x-eye-button href="{{ route('d.lowongan.show', $loker) }}" />
                         </div>
                     </x-td>
                 </tr>

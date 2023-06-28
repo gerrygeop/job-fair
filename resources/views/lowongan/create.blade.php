@@ -1,6 +1,6 @@
 <x-app-layout>
-    <x-board class="max-w-2xl">
-        <div class="p-6 text-gray-900">
+    <x-board>
+        <div class="max-w-3xl mx-auto p-6 text-gray-900">
 
             <form action="{{ route('d.lowongan.store') }}" method="POST">
                 @csrf
@@ -28,12 +28,6 @@
                     <x-input-label for="lokasi" :value="__('Lokasi')" />
                     <x-text-input id="lokasi" class="block mt-1 w-full" type="text" name="lokasi" :value="old('lokasi')" required autocomplete="lokasi" placeholder="Jakarta" />
                     <x-input-error :messages="$errors->get('lokasi')" class="mt-2" />
-                </div>
-
-                <div class="mt-4">
-                    <x-input-label for="deadline" :value="__('Batas Waktu')" />
-                    <x-text-input id="deadline" class="block mt-1 w-full" type="date" name="deadline" :value="old('deadline')" required />
-                    <x-input-error :messages="$errors->get('deadline')" class="mt-2" />
                 </div>
 
                 <div class="mt-4">

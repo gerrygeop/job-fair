@@ -1,6 +1,6 @@
 <x-app-layout>
-    <x-board class="max-w-2xl">
-        <div class="p-6 text-gray-900">
+    <x-board class="mb-8">
+        <div class="max-w-3xl mx-auto p-6 lg:py-8 text-gray-900">
 
             <form action="{{ route('d.lowongan.update', $loker) }}" method="POST">
                 @csrf
@@ -32,14 +32,8 @@
                 </div>
 
                 <div class="mt-4">
-                    <x-input-label for="deadline" :value="__('Batas Waktu')" />
-                    <x-text-input id="deadline" class="block mt-1 w-full" type="date" name="deadline" :value="old('deadline', $loker->deadline)" required />
-                    <x-input-error :messages="$errors->get('deadline')" class="mt-2" />
-                </div>
-
-                <div class="mt-4">
                     <x-input-label for="deskripsi" :value="__('Deskripsi')" />
-                    <x-text-area id="deskripsi" class="block mt-1 w-full" name="deskripsi" rows="5" placeholder="Tambahkan deskripsi tentang pekerjaan" required>{{ old('deskripsi', $loker->deskripsi) }}</x-text-area>
+                    <x-text-area id="deskripsi" class="block mt-1 w-full" name="deskripsi" rows="10" placeholder="Tambahkan deskripsi tentang pekerjaan" required>{{ old('deskripsi', $loker->deskripsi) }}</x-text-area>
                     <x-input-error :messages="$errors->get('deskripsi')" class="mt-2" />
                 </div>
 
