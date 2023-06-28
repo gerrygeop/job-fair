@@ -17,13 +17,7 @@
             </svg>
 
             <p class="text-sm text-gray-800 ml-1">
-                @foreach ($perusahaan->industri as $industri)
-                    {{ $industri->name }}
-
-                    @if (!$loop->last)
-                        <span class="mx-1">&mdash;</span>
-                    @endif
-                @endforeach
+                {{ $perusahaan->industri->name }}
             </p>
         </div>
 
