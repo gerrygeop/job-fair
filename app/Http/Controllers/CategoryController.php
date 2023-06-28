@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Industri;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class IndustriController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('admin.industri.index', [
-            'industries' => Industri::all()
+        return view('admin.categories.index', [
+            'categories' => Category::all()
         ]);
     }
 
@@ -23,8 +23,8 @@ class IndustriController extends Controller
      */
     public function create()
     {
-        return view('admin.industri.form', [
-            'industri' => new Industri()
+        return view('admin.categories.form', [
+            'category' => new Category()
         ]);
     }
 
@@ -34,51 +34,51 @@ class IndustriController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => ['required', 'string', 'max:100', 'unique:' . Industri::class]
+            'name' => ['required', 'string', 'max:100', 'unique:' . Category::class]
         ]);
 
         DB::transaction(function () use ($validated) {
             $validated['slug'] = str()->slug($validated['name']);
-            Industri::create($validated);
+            Category::create($validated);
         });
 
-        return to_route('d.industri.index');
+        return to_route('d.categories.index');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Industri $industri)
+    public function edit(Category $category)
     {
-        return view('admin.industri.form', [
-            'industri' => $industri
+        return view('admin.categories.form', [
+            'category' => $category
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Industri $industri)
+    public function update(Request $request, Category $category)
     {
         $validated = $request->validate([
-            'name' => ['required', 'string', 'max:100', 'unique:' . Industri::class]
+            'name' => ['required', 'string', 'max:100', 'unique:' . Category::class]
         ]);
 
-        DB::transaction(function () use ($validated, $industri) {
+        DB::transaction(function () use ($validated, $category) {
             $validated['slug'] = str()->slug($validated['name']);
-            $industri->update($validated);
+            $category->update($validated);
         });
 
-        return to_route('d.industri.index');
+        return to_route('d.categories.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Industri $industri)
+    public function destroy(Category $category)
     {
-        DB::transaction(function () use ($industri) {
-            $industri->delete();
+        DB::transaction(function () use ($category) {
+            $category->delete();
         });
 
         return back();

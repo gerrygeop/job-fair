@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\IndustriController;
 use App\Http\Controllers\LowonganController;
 use App\Http\Controllers\PelamarController;
 use App\Http\Controllers\PerusahaanController;
@@ -13,4 +15,7 @@ Route::middleware('auth')->prefix('admin/')->name('d.')->group(function () {
     Route::resource('lowongan', LowonganController::class);
 
     Route::resource('pelamar', PelamarController::class);
+
+    Route::resource('industri', IndustriController::class)->except('show');
+    Route::resource('categories', CategoryController::class)->except('show');
 });
