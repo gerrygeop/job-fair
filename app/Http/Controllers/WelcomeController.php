@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Lowongan;
 use App\Models\Perusahaan;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
@@ -18,8 +19,38 @@ class WelcomeController extends Controller
 
     public function lowongan()
     {
+
+        $lowongan = Lowongan::query()->when(
+            request('query'),
+            function ($query) {
+                return $query->where('judul', 'like', '%' . request('query') . '%')
+                    ->orWhere('lokasi', 'like', '%' . request('query') . '%')
+                    ->orWhereHas('category', function (Builder $query) {
+                        $query->where('name', 'like', '%' . request('query') . '%');
+                    })
+                    ->orWhereHas('perusahaan', function (Builder $query) {
+                        $query->where('nama_perusahaan', 'like', '%' . request('query') . '%')
+                            ->orWhereHas('industri', function (Builder $query) {
+                                $query->where('name', 'like', '%' . request('query') . '%');
+                            });
+                    });
+            },
+        )->get();
+
         return view('lowongan', [
-            'lowongan' => Lowongan::with('perusahaan')->get(),
+            'lowongan' => $lowongan,
+        ]);
+    }
+
+    public function lowonganDetail(Lowongan $lowongan)
+    {
+        $lowongan->clicks()->firstOrCreate([
+            'user_agent' => request()->userAgent(),
+            'ip' => request()->ip(),
+        ]);
+
+        return view('lowongan-detail', [
+            'lowongan' => $lowongan,
         ]);
     }
 
@@ -27,6 +58,13 @@ class WelcomeController extends Controller
     {
         return view('perusahaan', [
             'perusahaan' => Perusahaan::with('industri')->withCount('lowongan')->get(),
+        ]);
+    }
+
+    public function perusahaanDetail(Perusahaan $perusahaan)
+    {
+        return view('perusahaan-detail', [
+            'perusahaan' => $perusahaan,
         ]);
     }
 }

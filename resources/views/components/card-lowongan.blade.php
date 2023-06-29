@@ -6,9 +6,9 @@
             <div class="flex items-start mb-3">
                 <img alt="team" class="w-14 h-14 bg-gray-100 object-cover object-center flex-shrink-0 rounded mr-4" src="{{ asset('storage/perusahaan/logo/'.$lowongan->perusahaan->logo_path) }}">
 
-                <div class="flex-grow">
-                    <h2 class="text-gray-800 text-lg font-semibold">{{ $lowongan->judul }}</h2>
-                    <p class="text-indigo-600">{{ $lowongan->perusahaan->nama_perusahaan }}</p>
+                <div class="flex-grow flex flex-col">
+                    <a href="{{ route('lowongan-kerja.detail', $lowongan) }}" class="text-gray-800 text-lg font-semibold hover:underline">{{ $lowongan->judul }}</a>
+                    <a href="{{ route('perusahaan.detail', $lowongan->perusahaan) }}" class="text-indigo-600 hover:underline">{{ $lowongan->perusahaan->nama_perusahaan }}</a>
                 </div>
             </div>
 

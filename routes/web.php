@@ -16,8 +16,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [WelcomeController::class, 'welcome'])->name('homepage');
+
 Route::get('/lowongan', [WelcomeController::class, 'lowongan'])->name('lowongan-kerja');
+Route::get('/lowongan/{lowongan}', [WelcomeController::class, 'lowonganDetail'])->name('lowongan-kerja.detail');
+
 Route::get('/perusahaan', [WelcomeController::class, 'perusahaan'])->name('perusahaan');
+Route::get('/perusahaan/{perusahaan}', [WelcomeController::class, 'perusahaanDetail'])->name('perusahaan.detail');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
