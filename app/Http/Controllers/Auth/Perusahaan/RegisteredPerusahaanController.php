@@ -31,7 +31,7 @@ class RegisteredPerusahaanController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $user = $request->validate([
+        $account = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
@@ -48,23 +48,23 @@ class RegisteredPerusahaanController extends Controller
             'agree_to_terms' => ['required', 'boolean'],
         ]);
 
-        $user = DB::transaction(function () use ($user, $perusahaan) {
+        $user = DB::transaction(function () use ($account, $perusahaan) {
             $newUser = User::create([
-                'name' => $user['name'],
-                'email' => $user['email'],
-                'password' => Hash::make($user['password']),
+                'name' => $account['name'],
+                'email' => $account['email'],
+                'password' => Hash::make($account['password']),
                 'role' => \App\Enums\UserRole::PERUSAHAAN
             ]);
 
             if (request()->hasFile('logo_path')) {
-                $url = $perusahaan['logo_path']->hashName();
-                $perusahaan['logo_path'] = $url;
-                request()->file('logo_path')->storeAs('perusahaan/logo/', $url);
+                $logo_name = $perusahaan['logo_path']->hashName();
+                $perusahaan['logo_path'] = $logo_name;
+                request()->file('logo_path')->storeAs('perusahaan/logo/', $logo_name);
             }
             if (request()->hasFile('file_path')) {
-                $url = $perusahaan['file_path']->hashName();
-                $perusahaan['file_path'] = $url;
-                request()->file('file_path')->storeAs('perusahaan/dokumen/', $url);
+                $file_name = time() . '-' . $perusahaan['file_path']->getClientOriginalName();
+                $perusahaan['file_path'] = $file_name;
+                request()->file('file_path')->storeAs('perusahaan/dokumen/', $file_name);
             }
 
             $newUser->perusahaan()->create($perusahaan);

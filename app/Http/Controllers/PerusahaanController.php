@@ -17,7 +17,7 @@ class PerusahaanController extends Controller
     public function index()
     {
         return view('admin.perusahaan.index', [
-            'perusahaan' => Perusahaan::paginate(5),
+            'perusahaan' => Perusahaan::paginate(10),
             'perusahaan_total' => Perusahaan::count(),
         ]);
     }

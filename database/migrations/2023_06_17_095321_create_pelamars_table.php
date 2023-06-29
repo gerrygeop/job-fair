@@ -14,13 +14,11 @@ return new class extends Migration
         Schema::create('pelamar', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->string('nama_lengkap');
             $table->text('alamat');
             $table->string('jk');
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
             $table->string('telpon');
-            $table->string('email');
             $table->string('status_kawin');
             $table->string('pendidikan_terakhir')->nullable();
             $table->string('photo_path')->nullable();

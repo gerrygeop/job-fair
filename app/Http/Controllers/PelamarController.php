@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PelamarRequest;
 use App\Models\Pelamar;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class PelamarController extends Controller
 {
@@ -12,7 +15,10 @@ class PelamarController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.pelamar.index', [
+            'pelamar' => Pelamar::latest()->paginate(10),
+            'pelamar_total' => Pelamar::count(),
+        ]);
     }
 
     /**
@@ -36,7 +42,9 @@ class PelamarController extends Controller
      */
     public function show(Pelamar $pelamar)
     {
-        //
+        return view('pelamar.show', [
+            'pelamar' => $pelamar
+        ]);
     }
 
     /**
@@ -50,9 +58,32 @@ class PelamarController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Pelamar $pelamar)
+    public function update(PelamarRequest $request, Pelamar $pelamar)
     {
-        //
+        $validated = $request->validated();
+
+        DB::transaction(function () use ($validated, $pelamar) {
+            if (request()->hasFile('photo_path')) {
+                if (Storage::disk('public')->exists('pelamar/photo/' . $pelamar->photo_path)) {
+                    Storage::disk('public')->delete('pelamar/photo/' . $pelamar->photo_path);
+                }
+                $photo_name = $validated['photo_path']->hashName();
+                $validated['photo_path'] = $photo_name;
+                request()->file('photo_path')->storeAs('pelamar/photo/', $photo_name);
+            }
+            if (request()->hasFile('resume_path')) {
+                if (Storage::disk('public')->exists('pelamar/resume/' . $pelamar->resume_path)) {
+                    Storage::disk('public')->delete('pelamar/resume/' . $pelamar->resume_path);
+                }
+                $resume_name = time() . '-' . $validated['resume_path']->getClientOriginalName();
+                $validated['resume_path'] = $resume_name;
+                request()->file('resume_path')->storeAs('pelamar/resume/', $resume_name);
+            }
+
+            $pelamar->update($validated);
+        });
+
+        return back();
     }
 
     /**
@@ -61,5 +92,27 @@ class PelamarController extends Controller
     public function destroy(Pelamar $pelamar)
     {
         //
+    }
+
+    public function download(Pelamar $pelamar)
+    {
+        return response()->file(
+            public_path('storage/pelamar/resume/' . $pelamar->resume_path),
+            ['content-type' => 'application/pdf']
+        );
+    }
+
+    public function deleteFile(Pelamar $pelamar)
+    {
+        DB::transaction(function () use ($pelamar) {
+            if (Storage::disk('public')->exists('pelamar/resume/' . $pelamar->resume_path)) {
+                Storage::disk('public')->delete('pelamar/resume/' . $pelamar->resume_path);
+            }
+
+            $pelamar->resume_path = '';
+            $pelamar->save();
+        });
+
+        return back();
     }
 }
