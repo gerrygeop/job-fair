@@ -14,10 +14,6 @@ class Pelamar extends Model
     protected $guarded = ['id'];
     protected $table = 'pelamar';
 
-    protected $casts = [
-        'tanggal_lahir' => 'date',
-    ];
-
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

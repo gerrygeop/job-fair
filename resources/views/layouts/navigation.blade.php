@@ -69,6 +69,30 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+
+            @can('perusahaan')
+                <x-responsive-nav-link :href="route('d.perusahaan.show', auth()->user()->perusahaan)" :active="request()->routeIs('d.perusahaan.show')">
+                    Profile Perusahaan
+                </x-responsive-nav-link>
+                @endcan
+
+            @can('admin')
+                <x-responsive-nav-link :href="route('d.perusahaan.index')" :active="request()->routeIs('d.perusahaan.*')">
+                    Perusahaan
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('d.lowongan.index')" :active="request()->routeIs('d.lowongan.*')">
+                    Lowongan
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('d.pelamar.index')" :active="request()->routeIs('d.pelamar.*')">
+                    Pelamar
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('d.industri.index')" :active="request()->routeIs('d.industri.*')">
+                    Industri
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('d.categories.index')" :active="request()->routeIs('d.categories.*')">
+                    Kategori
+                </x-responsive-nav-link>
+            @endcan
         </div>
 
         <!-- Responsive Settings Options -->

@@ -77,8 +77,8 @@
                         <div class="mt-4">
                             <x-input-label for="status_kawin" :value="__('Status')" />
                             <x-select id="status_kawin" class="block mt-1 w-full" name="status_kawin" required>
-                                <option value="Laki-laki">Belum Menikah</option>
-                                <option value="Perempuan">Menikah</option>
+                                <option value="Belum Menikah">Belum Menikah</option>
+                                <option value="Menikah">Menikah</option>
                             </x-select>
                             <x-input-error :messages="$errors->get('status_kawin')" class="mt-2" />
                         </div>

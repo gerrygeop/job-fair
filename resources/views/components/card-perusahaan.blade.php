@@ -6,7 +6,7 @@
             <img alt="team" class="w-14 h-14 bg-gray-100 object-cover object-center flex-shrink-0 rounded mr-4" src="{{ asset('storage/perusahaan/logo/'.$perusahaan->logo_path) }}">
 
             <div class="flex-grow">
-                <a href="{{ route('perusahaan.detail', $perusahaan) }}" class="text-gray-800 text-lg font-semibold">{{ $perusahaan->nama_perusahaan }}</a>
+                <a href="{{ route('perusahaan.detail', $perusahaan) }}" class="text-gray-800 text-lg font-semibold hover:underline">{{ $perusahaan->nama_perusahaan }}</a>
                 <p class="text-indigo-600">{{ $perusahaan->lokasi }}</p>
             </div>
         </div>
