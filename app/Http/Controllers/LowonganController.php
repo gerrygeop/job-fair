@@ -52,7 +52,7 @@ class LowonganController extends Controller
     public function show(Lowongan $lowongan)
     {
         return view('lowongan.show', [
-            'loker' => $lowongan->load('category'),
+            'lowongan' => $lowongan->load('category'),
         ]);
     }
 
