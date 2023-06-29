@@ -15,6 +15,8 @@ Route::middleware('auth')->prefix('admin/')->name('d.')->group(function () {
     Route::resource('lowongan', LowonganController::class);
 
     Route::resource('pelamar', PelamarController::class);
+    Route::delete('pelamar/{pelamar}', [PelamarController::class, 'deleteFile'])->name('pelamar.delete-file');
+    Route::get('pelamar/{pelamar}/resume', [PelamarController::class, 'download'])->name('pelamar.download');
 
     Route::resource('industri', IndustriController::class)->except('show');
     Route::resource('categories', CategoryController::class)->except('show');

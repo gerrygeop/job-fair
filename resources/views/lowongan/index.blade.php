@@ -2,14 +2,16 @@
     <div class="sm:flex sm:items-center sm:justify-between">
         <div>
             <h2 class="text-lg font-medium text-gray-800">Daftar lowongan</h2>
-            <p class="text-sm text-gray-600">Ada {{ auth()->user()->perusahaan->lowongan->count() }} total lowongan</p>
+            <p class="text-sm text-gray-600">Ada {{ $lowongan->count() }} total lowongan</p>
         </div>
 
-        <div class="flex items-center mt-4 lg:mt-0 gap-x-3">
-            <x-add-button href="{{ route('d.lowongan.create') }}">
-                Buat lowongan baru
-            </x-add-button>
-        </div>
+        @can('perusahaan')
+            <div class="flex items-center mt-4 lg:mt-0 gap-x-3">
+                <x-add-button href="{{ route('d.lowongan.create') }}">
+                    Buat lowongan baru
+                </x-add-button>
+            </div>
+        @endcan
     </div>
 
     <x-table>
@@ -24,7 +26,7 @@
             </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
-            @forelse (auth()->user()->perusahaan->lowongan->sortByDesc('created_at') as $loker)
+            @forelse ($lowongan as $loker)
                 <tr>
                     <x-td>
                         <a href="{{ route('d.lowongan.show', $loker) }}" class="font-medium text-gray-900 hover:underline">
@@ -36,13 +38,15 @@
                         <x-badge :isActive="$loker->is_active">{{ $loker->is_active ? 'Aktif' : 'Tidak aktif' }}</x-badge>
                     </x-td>
                     <x-td class="flex items-center justify-center gap-x-6">
-                        <form action="{{ route('d.lowongan.destroy', $loker) }}" method="POST" class="flex items-center">
-                            @csrf
-                            @method('DELETE')
-                            <x-trash-button />
-                        </form>
+                        @can('perusahaan')
+                            <form action="{{ route('d.lowongan.destroy', $loker) }}" method="POST" class="flex items-center">
+                                @csrf
+                                @method('DELETE')
+                                <x-trash-button />
+                            </form>
+                            <x-edit-button href="{{ route('d.lowongan.edit', $loker) }}" />
+                        @endcan
 
-                        <x-edit-button href="{{ route('d.lowongan.edit', $loker) }}" />
                         <x-eye-button href="{{ route('d.lowongan.show', $loker) }}" />
                     </x-td>
                 </tr>
@@ -57,5 +61,11 @@
 
         </tbody>
     </x-table>
+
+    @can('admin')
+        <div class="mt-6">
+            {{ $lowongan->onEachSide(3)->links() }}
+        </div>
+    @endcan
 
 </section>

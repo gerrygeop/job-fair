@@ -40,7 +40,9 @@
                             Total {{ $item->lowongan->count() }} lowongan
                         </x-td>
                         <x-td class="text-center">
-                            <a href="{{ route('d.perusahaan.show', $item) }}" class="px-3.5 py-2 text-xs text-gray-500 uppercase font-semibold tracking-wider border rounded hover:shadow-sm hover:border-indigo-500 hover:text-indigo-600">Detail</a>
+                            <div class="flex justify-center">
+                                <x-arright-button href="{{ route('d.perusahaan.show', $item) }}" />
+                            </div>
                         </x-td>
                     </tr>
 
