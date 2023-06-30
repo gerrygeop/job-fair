@@ -14,7 +14,7 @@ Route::middleware('auth')->prefix('admin/')->name('d.')->group(function () {
     Route::get('perusahaan/{perusahaan}/lampiran', [PerusahaanController::class, 'download'])->name('perusahaan.download');
 
     Route::resource('lowongan', LowonganController::class);
-    Route::get('lowongan/{lowongan}/pelamar', [LowonganPelamarController::class, 'index'])->name('lowongan-pelamar.index');
+    Route::get('lowongan/{lowongan}/pelamar', [LowonganPelamarController::class, 'index'])->name('lowongan.pelamar.index');
 
     Route::resource('pelamar', PelamarController::class);
     Route::delete('pelamar/{pelamar}/resume-delete', [PelamarController::class, 'deleteFile'])->name('pelamar.delete-resume');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PelamarRequest;
 use App\Models\Pelamar;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -58,7 +59,7 @@ class PelamarController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(PelamarRequest $request, Pelamar $pelamar)
+    public function update(PelamarRequest $request, Pelamar $pelamar): RedirectResponse
     {
         $validated = $request->validated();
 
@@ -83,7 +84,7 @@ class PelamarController extends Controller
             $pelamar->update($validated);
         });
 
-        return back();
+        return back()->with('status', 'pelamar-updated');
     }
 
     /**

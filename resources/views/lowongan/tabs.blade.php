@@ -3,7 +3,7 @@
         <x-tab-link href="{{ route('d.lowongan.show', $lowongan) }}" active="{{ request()->routeIs('d.lowongan.show') }}">
             Detail Lowongan
         </x-tab-link>
-        <x-tab-link href="{{ route('d.lowongan-pelamar.index', $lowongan) }}" active="{{ request()->routeIs('d.lowongan-pelamar.index') }}">
+        <x-tab-link href="{{ route('d.lowongan.pelamar.index', $lowongan) }}" active="{{ request()->routeIs('d.lowongan.pelamar.index') }}">
             Pelamar
         </x-tab-link>
     </div>

@@ -32,7 +32,7 @@
                         </x-td>
                         <x-td>
                             <div class="flex justify-center">
-                                <x-arright-button href="{{ route('d.pelamar.show', $item) }}" />
+                                <x-eye-button href="{{ route('d.pelamar.show', $item) }}" />
                             </div>
                         </x-td>
                     </tr>
