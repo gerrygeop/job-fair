@@ -105,7 +105,7 @@
 
                     <div class="mt-5">
                         <label for="agree_to_terms" class="flex items-start">
-                            <input type="checkbox" id="agree_to_terms" name="agree_to_terms" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mr-1.5 my-1" value="1" required/>
+                            <input type="checkbox" id="agree_to_terms" name="agree_to_terms" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mr-1.5 my-1" value="1" checked required/>
                             <span class="font-semibold text-gray-700 leading-tight">Dengan ini maka saya setuju dengan syarat dan ketentuan yang berlaku</span>
                         </label>
 
