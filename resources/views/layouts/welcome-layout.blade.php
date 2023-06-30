@@ -49,7 +49,7 @@
                                             </x-dropdown-link>
 
                                             <x-dropdown-link :href="route('profile.edit')">
-                                                {{ __('Pengaturan') }}
+                                                {{ __('Pengaturan Akun') }}
                                             </x-dropdown-link>
 
                                             <form method="POST" action="{{ route('logout') }}">
@@ -105,10 +105,32 @@
 
                     <!-- Responsive Settings Options -->
                     <div class="py-6 px-4 border-t space-y-4 border-gray-200">
+
                         @auth
-                            <a class="block px-5 py-2 text-sm text-center text-white capitalize bg-blue-600 rounded lg:mt-0 hover:bg-blue-500 lg:w-auto" href="#">
-                                Dashboard
-                            </a>
+                            @can('pelamar')
+                                <div class="space-y-1">
+                                    <x-responsive-nav-link :href="route('profile.edit')">
+                                        {{ __('Pengaturan Akun') }}
+                                    </x-responsive-nav-link>
+
+                                    <!-- Authentication -->
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+
+                                        <x-responsive-nav-link class="text-red-600" :href="route('logout')"
+                                                onclick="event.preventDefault();
+                                                            this.closest('form').submit();">
+                                            {{ __('Keluar') }}
+                                        </x-responsive-nav-link>
+                                    </form>
+                                </div>
+                            @endcan
+
+                            @canany(['perusahaan', 'admin'])
+                                <a class="block px-5 py-2 text-sm text-center text-white capitalize bg-blue-600 rounded lg:mt-0 hover:bg-blue-500 lg:w-auto" href="#">
+                                    Dashboard
+                                </a>
+                            @endcanany
                         @endauth
 
                         @guest
