@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Models\Perusahaan;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class PerusahaanRequest extends FormRequest
 {
@@ -27,11 +28,12 @@ class PerusahaanRequest extends FormRequest
             'alamat' => ['required', 'string'],
             'lokasi' => ['required', 'string', 'max:255'],
             'telpon' => ['required', 'string', 'min:12'],
-            'url_website' => ['nullable', 'string', 'max:255'],
+            'url_website' => ['nullable', 'regex:/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i', 'max:255'],
             'deskripsi' => ['nullable', 'string'],
-            'logo_path' => ['nullable', 'file', 'image', 'mimes:jpg,jpeg,png'],
-            'file_path' => ['nullable', 'file', 'max:3000', 'mimes:pdf,docx',],
+            'logo_path' => [Rule::requiredIf(request()->isMethod('post')), 'file', 'image', 'mimes:jpg,jpeg,png'],
+            'file_path' => [Rule::requiredIf(request()->isMethod('post')), 'file', 'max:3000', 'mimes:pdf,docx',],
             'industri_id' => ['required', 'exists:industri,id'],
+            'agree_to_terms' => [Rule::requiredIf(request()->isMethod('post')), 'boolean'],
         ];
     }
 }

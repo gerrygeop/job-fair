@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth\Perusahaan;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PerusahaanRequest;
+use App\Models\Industri;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -21,7 +23,9 @@ class RegisteredPerusahaanController extends Controller
      */
     public function create(): View
     {
-        return view('auth.perusahaan.register');
+        return view('auth.perusahaan.register', [
+            'industries' => Industri::all()
+        ]);
     }
 
     /**
@@ -29,7 +33,7 @@ class RegisteredPerusahaanController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(PerusahaanRequest $request): RedirectResponse
     {
         $account = $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -37,16 +41,7 @@ class RegisteredPerusahaanController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $perusahaan = $request->validate([
-            'nama_perusahaan' => ['required', 'string', 'max:255'],
-            'alamat' => ['required', 'string'],
-            'lokasi' => ['required', 'string', 'max:255'],
-            'telpon' => ['required', 'numeric', 'min:12'],
-            'url_website' => ['nullable', 'string', 'max:255'],
-            'logo_path' => ['required', 'file', 'image', 'mimes:jpg,jpeg,png'],
-            'file_path' => ['required', 'file', 'mimes:pdf,docx'],
-            'agree_to_terms' => ['required', 'boolean'],
-        ]);
+        $perusahaan = $request->validated();
 
         $user = DB::transaction(function () use ($account, $perusahaan) {
             $newUser = User::create([
