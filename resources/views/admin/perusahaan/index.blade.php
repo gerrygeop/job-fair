@@ -48,7 +48,7 @@
 
                 @empty
                     <tr>
-                        <x-td class="font-medium italic" colspan="4">
+                        <x-td class="font-medium text-center italic" colspan="4">
                             Belum ada daftar perusahaan
                         </x-td>
                     </tr>

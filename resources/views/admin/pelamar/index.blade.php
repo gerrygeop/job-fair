@@ -39,7 +39,7 @@
 
                 @empty
                     <tr>
-                        <x-td class="font-medium italic" colspan="4">
+                        <x-td class="font-medium text-center italic" colspan="3">
                             Belum ada daftar pencari kerja
                         </x-td>
                     </tr>

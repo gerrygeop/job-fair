@@ -53,9 +53,9 @@
 
             @empty
                 <tr>
-                    <td class="p-4 text-sm font-medium whitespace-nowrap" colspan="4">
-                        <p class="text-gray-600 italic">Anda belum membuat lowongan</p>
-                    </td>
+                    <x-td class="font-medium text-center italic" colspan="4">
+                        Anda belum membuat lowongan
+                    </x-td>
                 </tr>
             @endforelse
 

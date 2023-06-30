@@ -41,7 +41,7 @@
 
                 @empty
                     <tr>
-                        <x-td class="italic font-medium" colspan="4">
+                        <x-td class="font-medium text-center italic" colspan="2">
                             Belum ada daftar kategori
                         </x-td>
                     </tr>
