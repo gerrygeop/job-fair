@@ -32,6 +32,6 @@ class Lowongan extends Model
 
     public function pelamar(): BelongsToMany
     {
-        return $this->belongsToMany(Pelamar::class);
+        return $this->belongsToMany(Pelamar::class)->withTimestamps();
     }
 }

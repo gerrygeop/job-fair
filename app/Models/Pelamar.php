@@ -21,6 +21,6 @@ class Pelamar extends Model
 
     public function lowongan(): BelongsToMany
     {
-        return $this->belongsToMany(Lowongan::class);
+        return $this->belongsToMany(Lowongan::class)->withTimestamps();
     }
 }

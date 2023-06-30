@@ -116,4 +116,11 @@ class PelamarController extends Controller
 
         return back();
     }
+
+    public function lamaran()
+    {
+        return view('pelamar.list-lamaran', [
+            'lowongan' => auth()->user()->pelamar->lowongan
+        ]);
+    }
 }
