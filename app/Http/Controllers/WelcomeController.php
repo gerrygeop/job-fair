@@ -12,7 +12,7 @@ class WelcomeController extends Controller
     public function welcome()
     {
         return view('welcome', [
-            'lowongan' => Lowongan::with('perusahaan')->limit(6)->get(),
+            'lowongan' => Lowongan::where('is_active', true)->with('perusahaan')->limit(6)->get(),
             'perusahaan' => Perusahaan::with('industri')->limit(6)->withCount('lowongan')->get(),
         ]);
     }
