@@ -66,9 +66,15 @@
             <div class="mt-4 border-t border-gray-100">
                 <div class="py-4">
                     <h6 class="text-sm font-medium text-gray-900">Deskripsi</h6>
-                    <p class="mt-1 text-sm leading-6 text-gray-700 whitespace-pre-wrap">
-                        {!! $perusahaan->deskripsi !!}
-                    </p>
+                    @if ($perusahaan->deskripsi)
+                        <p class="mt-1 text-sm leading-6 text-gray-700 whitespace-pre-wrap">
+                            {!! $perusahaan->deskripsi !!}
+                        </p>
+                    @else
+                        <p class="mt-1 text-sm text-gray-500 italic">
+                            -Belum ada deskripsi
+                        </p>
+                    @endif
                 </div>
 
                 <div class="py-4">
