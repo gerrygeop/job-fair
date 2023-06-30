@@ -92,4 +92,15 @@ class LowonganController extends Controller
 
         return back();
     }
+
+    public function toggleStatus(Lowongan $lowongan)
+    {
+        DB::transaction(function () use ($lowongan) {
+            $lowongan->update([
+                'is_active' => !$lowongan->is_active
+            ]);
+        });
+
+        return back();
+    }
 }

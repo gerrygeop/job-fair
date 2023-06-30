@@ -2,7 +2,18 @@
     <x-board class="mb-8">
         <div class="max-w-3xl mx-auto p-6 lg:py-8 text-gray-900">
 
-            <form action="{{ route('d.lowongan.update', $loker) }}" method="POST">
+            <div class="flex justify-end">
+                <form action="{{ route('d.lowongan.toggle-status', $loker) }}" method="POST">
+                    @csrf
+                    @method('PATCH')
+
+                    <button type="submit" @class(["inline-flex items-center px-4 py-2 text-white text-sm font-medium rounded-md tracking-wide", "bg-red-600 hover:bg-red-700" => $loker->is_active, "bg-indigo-500 hover:bg-indigo-600" => !$loker->is_active])>
+                        {{ $loker->is_active ? 'Aktifkan Lowongan' : 'Tutup Lowongan' }}
+                    </button>
+                </form>
+            </div>
+
+            <form action="{{ route('d.lowongan.update', $loker) }}" method="POST" class="mt-4">
                 @csrf
                 @method('PUT')
 
