@@ -113,7 +113,7 @@
                             </ul>
                         @else
                             <p class="text-sm text-gray-500 italic">
-                                -Tidak ada lampiran
+                                -Belum ada lampiran
                             </p>
                         @endif
                     </div>
