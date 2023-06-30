@@ -50,6 +50,18 @@
                         <x-input-error :messages="$errors->get('nama_perusahaan')" class="mt-2" />
                     </div>
 
+                    <div class="mt-4">
+                        <x-input-label for="industri_id" :value="__('Industri')" />
+                        <x-select id="industri_id" class="block mt-1 w-full" name="industri_id" required>
+                            @foreach ($industries as $industri)
+                                <option value="{{ $industri->id }}">
+                                    {{ $industri->name }}
+                                </option>
+                            @endforeach
+                        </x-select>
+                        <x-input-error :messages="$errors->get('industri_id')" class="mt-2" />
+                    </div>
+
                     <!-- Alamat Perusahaan -->
                     <div class="mt-4">
                         <x-input-label for="alamat" :value="__('Alamat Perusahaan')" />
