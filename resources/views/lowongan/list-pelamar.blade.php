@@ -37,8 +37,8 @@
                         </x-td>
                         <x-td>{{ $pelamar->telpon }}</x-td>
                         <x-td>{{ $pelamar->jk }}</x-td>
-                        <x-td>{{ $pelamar->pelamar->created_at->diffForHumans() }}</x-td>
-                        <x-td class="flex items-center justify-center gap-x-6">
+                        <x-td>{{ $pelamar->pivot->created_at->diffForHumans() }}</x-td>
+                        <x-td>
                             <x-arright-button href="{{ route('d.pelamar.show', $pelamar) }}" />
                         </x-td>
                     </tr>

@@ -48,6 +48,10 @@
                                                 {{ __('Profile') }}
                                             </x-dropdown-link>
 
+                                            <x-dropdown-link :href="route('pelamar.lamaran')">
+                                                {{ __('Lamaran') }}
+                                            </x-dropdown-link>
+
                                             <x-dropdown-link :href="route('profile.edit')">
                                                 {{ __('Pengaturan Akun') }}
                                             </x-dropdown-link>
@@ -109,6 +113,14 @@
                         @auth
                             @can('pelamar')
                                 <div class="space-y-1">
+                                    <x-responsive-nav-link :href="route('dashboard')">
+                                        {{ __('Profile') }}
+                                    </x-responsive-nav-link>
+
+                                    <x-responsive-nav-link :href="route('pelamar.lamaran')">
+                                        {{ __('Lamaran') }}
+                                    </x-responsive-nav-link>
+
                                     <x-responsive-nav-link :href="route('profile.edit')">
                                         {{ __('Pengaturan Akun') }}
                                     </x-responsive-nav-link>

@@ -1,4 +1,4 @@
-<div class="max-w-4xl mx-auto p-6">
+<div class="max-w-4xl mx-auto py-6 px-2 sm:px-6">
 
     <div class="flex items-center gap-x-4 px-4 sm:px-0">
         <img class="object-cover w-20 h-20 rounded-full border" src="{{ asset('storage/pelamar/photo/'. $pelamar->photo_path) }}" alt="{{ $pelamar->user->name }}">
