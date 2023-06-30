@@ -53,12 +53,6 @@
                 </div>
             </div>
 
-            <div class="flex items-center justify-between mt-8">
-                <x-link-button href="{{ route('dashboard') }}">
-                    {{ __('Kembali') }}
-                </x-link-button>
-            </div>
-
         </div>
     </x-board>
 </x-app-layout>
