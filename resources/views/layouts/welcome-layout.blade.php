@@ -146,7 +146,7 @@
                         @endauth
 
                         @guest
-                            <a class="block px-5 py-2 text-sm text-center text-white capitalize bg-blue-600 rounded lg:mt-0 hover:bg-blue-500 lg:w-auto" href="#">
+                            <a class="block px-5 py-2 text-sm text-center text-white capitalize bg-blue-600 rounded lg:mt-0 hover:bg-blue-500 lg:w-auto" href="{{ route('login') }}">
                                 Login
                             </a>
                             <a class="block px-5 py-2 text-sm text-center text-white capitalize bg-blue-600 rounded lg:mt-0 hover:bg-blue-500 lg:w-auto" href="{{ route('registering') }}">
